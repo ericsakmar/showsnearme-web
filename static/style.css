@@ -12,11 +12,20 @@ body {
   margin: var(--gutter);
 }
 
+.page {
+  display: flex;
+  max-width: 45em;
+}
+
 .logo {
   font-size: 3em;
   background: var(--base-color);
   color: var(--bg-color);
   padding: 0.5em;
   display: inline-block;
+}
+
+.content {
+  margin-left: var(--gutter);
 }
 

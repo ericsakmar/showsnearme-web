@@ -1,7 +1,9 @@
 <template>
-  <ul>
-    <li v-for="show in groupByDate">{{show.name}}</li>
-  </ul>
+  <div class="show-list">
+    <ul>
+      <li v-for="show in groupByDate">{{show.name}}</li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -25,3 +27,5 @@ export default {
 }
 </script>
 
+<style>
+</style>
