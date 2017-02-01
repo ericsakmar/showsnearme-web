@@ -1,7 +1,22 @@
+:root {
+  --base-color: black;
+  --bg-color: white;
+  --gutter: 1em;
+}
+
 body {
   font-family: monospace;
   font-size: 1.5em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: var(--gutter);
+}
+
+.logo {
+  font-size: 3em;
+  background: var(--base-color);
+  color: var(--bg-color);
+  padding: 0.5em;
+  display: inline-block;
 }
 
