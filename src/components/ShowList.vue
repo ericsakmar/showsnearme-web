@@ -23,43 +23,22 @@
 
 <script>
 import moment from 'moment';
+import { date, time } from '../filters';
 
 export default {
   name: 'show-list',
   props: ['shows'],
-
-  filters: {
-
-    date: function(value) {
-      return moment(value).calendar(null, {
-        sameDay: '[Today]',
-        nextDay: '[Tomorrow]',
-        nextWeek: 'dddd',
-        lastDay: '[Yesterday]',
-        lastWeek: '[Last] dddd',
-        sameElse: 'dddd, MMMM Do'
-      });
-    },
-
-    time: function(value) {
-      return moment(value).format('h:mma');
-    }
-  },
+  filters: { date, time },
 
   computed: {
     groupByDate: function() {
 
-      const dates = this.shows.reduce((dates, show) => dates.add(moment(show.start_time).format('YYYY-MM-DD')), new Set());
-
-      const grouped = Array.from(dates).reduce((acc, date) => {
-        acc[date] = [];
+      const grouped = this.shows.reduce((acc, show) => {
+        const key = moment(show.start_time).format('YYYY-MM-DD');
+        acc[key] = acc[key] || [];
+        acc[key].push(show);
         return acc;
       }, {});
-
-      this.shows.forEach(show => {
-        const key = moment(show.start_time).format('YYYY-MM-DD');
-        grouped[key].push(show);
-      });
 
       const arrayed = Object.keys(grouped).map(k => ({date:k, shows:grouped[k]}));
 
