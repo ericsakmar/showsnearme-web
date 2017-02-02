@@ -1,7 +1,9 @@
 :root {
   --base-color: black;
   --bg-color: white;
+  --accent-color: yellow;
   --gutter: 1em;
+  --gutter-small: 0.25em;
 }
 
 body {
@@ -29,3 +31,6 @@ body {
   margin-left: var(--gutter);
 }
 
+.header {
+  font-weight: 700;
+}
