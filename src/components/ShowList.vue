@@ -86,7 +86,7 @@ export default {
   }
 
   .show-summary__time {
-    background: #ccc;
+    background: #eee;
     flex: 0 0 5em;
     text-align: center;
     padding: var(--gutter-small);
