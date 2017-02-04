@@ -12,7 +12,7 @@
 
         <div class="show-summary__info">
           <h1 class="header">{{show.name}}</h1>
-          <p>{{show.place[0].name}}</p>
+          <p v-if="show.place.length > 0">{{show.place[0].name}}</p>
         </div>
 
       </article>
