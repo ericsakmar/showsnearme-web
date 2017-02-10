@@ -31,7 +31,7 @@ export default {
       const since = now.format();
       const until = now.add(1, 'month').format();
 
-      window.fetch(`proxy/events?since=${since}&until=${until}`)
+      window.fetch(`${process.env.API}/events?since=${since}&until=${until}`)
         .then(res => res.json())
         .then(shows => this.shows = shows);
     }
