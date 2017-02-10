@@ -14,6 +14,14 @@ body {
   margin: var(--gutter);
 }
 
+a {
+  color: #0B41D7;
+}
+
+a:visited {
+  color: #0C88F7;
+}
+
 .page {
   display: flex;
   max-width: 45em;

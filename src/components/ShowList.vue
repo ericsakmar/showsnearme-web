@@ -11,7 +11,9 @@
         </aside>
 
         <div class="show-summary__info">
-          <h1 class="header">{{show.name}}</h1>
+          <h1 class="header">
+            <a :href="'https://facebook.com/' + show.remoteId" target="_blank">{{show.name}}</a>
+          </h1>
           <p v-if="show.place.length > 0">{{show.place[0].name}}</p>
         </div>
 
@@ -53,6 +55,7 @@ export default {
 </script>
 
 <style>
+
   .header--day {
     background: var(--accent-color);
     margin-bottom: var(--gutter);
@@ -77,6 +80,5 @@ export default {
     margin-top: var(--gutter-small);
     margin-bottom: var(--gutter-small);
   }
-
 
 </style>
