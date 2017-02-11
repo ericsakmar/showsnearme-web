@@ -1,7 +1,8 @@
 :root {
-  --base-color: black;
+  --base-color: #29292E;
   --bg-color: white;
-  --accent-color: yellow;
+  --accent-color: #FFF44C;
+  --some-color: #e82a22;
   --gutter: 1em;
   --gutter-small: 0.25em;
 }
@@ -14,12 +15,12 @@ body {
   margin: var(--gutter);
 }
 
-a {
-  color: #0B41D7;
+a:link {
+  color: #145b9b;
 }
 
 a:visited {
-  color: #0C88F7;
+  color: #478ECE;
 }
 
 .page {
