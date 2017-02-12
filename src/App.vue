@@ -28,8 +28,8 @@ export default {
   methods: {
     fetchShows () {
       const now = moment();
-      const since = now.format();
-      const until = now.add(1, 'month').format();
+      const since = now.subtract(12, 'hours').format();
+      const until = now.add(8, 'days').format();
 
       window.fetch(`${process.env.API}/events?since=${since}&until=${until}`)
         .then(res => res.json())
