@@ -46,6 +46,10 @@ a:visited {
 
 @media (max-width: 45em) {
 
+  body {
+    margin: var(--gutter-small);
+  }
+
   .page {
     flex-direction: column;
   }
@@ -53,6 +57,14 @@ a:visited {
   .content {
     margin-top: var(--gutter);
     margin-left: 0;
+  }
+
+}
+
+@media (max-width: 35em) {
+
+  .logo {
+    width: 100%;
   }
 
 }
