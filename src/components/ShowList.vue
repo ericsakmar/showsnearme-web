@@ -32,6 +32,10 @@ export default {
   props: ['shows'],
   filters: { date, time },
 
+  created() {
+    console.log(this.$route.query);
+  },
+
   computed: {
     groupByDate: function() {
 
@@ -50,7 +54,7 @@ export default {
 
       return arrayed;
     }
-  }
+  },
 }
 </script>
 
