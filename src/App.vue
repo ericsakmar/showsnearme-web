@@ -1,12 +1,15 @@
 <template>
   <div>
+
     <ActivityIndicator v-if="isLoading"></ActivityIndicator>
+
     <ShowList :shows="shows" v-if="!isLoading"></ShowList>
     
-    <div class="actions">
+    <div class="actions" v-if="!isLoading">
       <a @click.prevent="previous()" href="#">previous</a>     
       <a @click.prevent="next()" href="#">next</a>     
     </div>
+
   </div>
 </template>
 

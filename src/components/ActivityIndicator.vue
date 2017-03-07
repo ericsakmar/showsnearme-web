@@ -43,7 +43,6 @@ export default {
 <style scoped>
 
 .activity-indicator {
-  text-align: center;
 }
 
 </style>
