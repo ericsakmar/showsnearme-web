@@ -6,8 +6,12 @@
     <ShowList :shows="shows" v-if="!isLoading"></ShowList>
     
     <div class="actions" v-if="!isLoading">
-      <a @click.prevent="previous()" href="#">previous</a>     
-      <a @click.prevent="next()" href="#">next</a>     
+      <div>
+        <a @click.prevent="previous()" href="#" class="button">previous</a>     
+      </div>
+      <div>
+        <a @click.prevent="next()" href="#" class="button">next</a>     
+      </div>
     </div>
 
   </div>
@@ -93,10 +97,10 @@ export default {
 .actions {
   display: flex;
 }
-.actions a {
+.actions div {
   flex-grow: 1;
 }
-.actions a:last-child {
+.actions div:last-child {
   text-align: right;
 }
 

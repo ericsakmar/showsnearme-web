@@ -52,6 +52,12 @@ a:visited {
   font-weight: 700;
 }
 
+.button {
+  background-color: #145b9b;
+  color: var(--bg-color) !important;
+  padding: var(--gutter-small) var(--gutter);
+}
+
 @media (max-width: 45em) {
 
   body {
