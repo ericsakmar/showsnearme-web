@@ -8,7 +8,8 @@ import moment from 'moment'
 Vue.use(VueRouter);
 
 const routes = [
-  { path: '/', component: App },
+  { path: '/shows', component: App },
+  { path: '/', redirect: '/shows' },
 ];
 
 const router = new VueRouter({ routes });
