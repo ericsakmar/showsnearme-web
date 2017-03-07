@@ -1,12 +1,15 @@
 <template>
   <div>
+
     <ActivityIndicator v-if="isLoading"></ActivityIndicator>
+
     <ShowList :shows="shows" v-if="!isLoading"></ShowList>
     
-    <div class="actions">
+    <div class="actions" v-if="!isLoading">
       <a @click.prevent="previous()" href="#">previous</a>     
       <a @click.prevent="next()" href="#">next</a>     
     </div>
+
   </div>
 </template>
 
@@ -43,7 +46,7 @@ export default {
   methods: {
 
     next() {
-      const now = moment(this.$route.query.since).add(8, 'days');
+      const now = moment(this.$route.query.since).add(7, 'days');
       const since = now.format();
       const until = now.add(8, 'days').format();
       this.$router.push({ path: '/shows', query: { since, until } });
@@ -52,7 +55,7 @@ export default {
     previous() {
       const now = moment(this.$route.query.since);
       const until = now.format();
-      const since = now.subtract(8, 'days').format();
+      const since = now.subtract(7, 'days').format();
       this.$router.push({ path: '/shows', query: { since, until } });
     },
 
@@ -65,7 +68,8 @@ export default {
         const now = moment();
         const since = now.subtract(6, 'hours').format();
         const until = now.add(8, 'days').format();
-        this.$router.push({ path: '/shows', query: { since, until } });
+        this.fetchShows(since, until);
+//        this.$router.push({ path: '/shows', query: { since, until } });
       }
 
     },
