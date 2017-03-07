@@ -1,7 +1,8 @@
 :root {
-  --base-color: black;
+  --base-color: #29292E;
   --bg-color: white;
-  --accent-color: yellow;
+  --accent-color: #FFF44C;
+  --some-color: #e82a22;
   --gutter: 1em;
   --gutter-small: 0.25em;
 }
@@ -12,6 +13,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: var(--gutter);
+}
+
+a:link {
+  color: #145b9b;
+}
+
+a:visited {
+  color: #478ECE;
 }
 
 .page {
@@ -33,4 +42,29 @@ body {
 
 .header {
   font-weight: 700;
+}
+
+@media (max-width: 45em) {
+
+  body {
+    margin: var(--gutter-small);
+  }
+
+  .page {
+    flex-direction: column;
+  }
+
+  .content {
+    margin-top: var(--gutter);
+    margin-left: 0;
+  }
+
+}
+
+@media (max-width: 35em) {
+
+  .logo {
+    width: 100%;
+  }
+
 }
