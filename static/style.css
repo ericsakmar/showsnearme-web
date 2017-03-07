@@ -37,6 +37,11 @@ a:visited {
   text-decoration: none;
   color: #fff !important;
 }
+.logo-small {
+  font-size: 0.75em;
+  text-align: center;
+  display: none;
+}
 
 .content {
   margin-left: var(--gutter);
@@ -61,12 +66,15 @@ a:visited {
     margin-left: 0;
   }
 
-}
-
-@media (max-width: 35em) {
 
   .logo {
     width: 100%;
+  }
+  .logo--big {
+    display: none;
+  }
+  .logo-small {
+    display: block;
   }
 
 }
