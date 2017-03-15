@@ -7,10 +7,10 @@
     
     <div class="actions" v-if="!isLoading">
       <div>
-        <a @click.prevent="previous()" href="#" class="button">previous</a>     
+        <a @click.prevent="previous()" href="#" class="button">&lt;&lt;&lt;</a>     
       </div>
       <div>
-        <a @click.prevent="next()" href="#" class="button">next</a>     
+        <a @click.prevent="next()" href="#" class="button">&gt;&gt;&gt;</a>     
       </div>
     </div>
 
