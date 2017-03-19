@@ -19,6 +19,11 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var compiler = webpack(webpackConfig)
 
+app.get('/*',function(req,res,next){
+  res.header('Service-Worker-Allowed' , '/');
+  next(); // http://expressjs.com/guide.html#passing-route control
+});
+
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true

@@ -10,6 +10,8 @@ var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
 var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
 var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
+var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+
 module.exports = {
   entry: {
     app: ['whatwg-fetch', './src/main.js']
@@ -96,5 +98,20 @@ module.exports = {
         browsers: ['last 2 versions']
       })
     ]
-  }
+  },
+  plugins: [
+    new SWPrecacheWebpackPlugin({
+      cacheId: "shows-near-me",
+      filename: "sw.js",
+      maximumFileSizeToCacheInBytes: 4194304,
+      minify: true,
+      staticFileGlobs: [
+        'static/reset.css',
+        'static/style.css',
+        'static/manifest.json',
+      ],
+      mergeStaticsConfig: true,
+      runtimeCaching: [],
+    }),
+  ]
 }

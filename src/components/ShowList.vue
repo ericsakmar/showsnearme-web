@@ -4,20 +4,24 @@
     <div v-for="day in groupByDate" class="day">
       <h1 class="header header--day">{{day.date | date}}</h1>
 
-      <article class="show-summary" v-for="show in day.shows">
+      <div class="day-group">
 
-        <aside class="show-summary__time">
-          <p>{{show.start_time | time }}</p>
-        </aside>
+        <article class="show-summary" v-for="show in day.shows"
+          v-bind:style="{ backgroundImage: 'url(' + (show.cover && show.cover.source) + ')'}">
 
-        <div class="show-summary__info">
-          <h1 class="header">
-            <a :href="'https://facebook.com/' + show.remoteId" target="_blank">{{show.name}}</a>
-          </h1>
-          <p v-if="show.place.length > 0">{{show.place[0].name}}</p>
-        </div>
+          <div class="show-summary__info">
+            <h1 class="header">
+              <a :href="'https://facebook.com/' + show.remoteId" target="_blank">{{show.name}}</a>
+            </h1>
+            <p>
+              <span>{{ show.start_time | time }}</span>
+              <span v-if="show.place.length > 0">at {{ show.place[0].name }}</span>
+            </p>
+          </div>
 
-      </article>
+        </article>
+
+      </div>
     </div>
 
   </div>
@@ -56,29 +60,49 @@ export default {
 
 <style>
 
-  .header--day {
-    background: var(--accent-color);
-    margin-bottom: var(--gutter);
-    padding: var(--gutter-small);
-  }
+.header--day {
+  background: var(--accent-color);
+  padding: var(--gutter-small);
+}
 
+.day-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.show-summary {
+  margin: var(--gutter-small);
+  background-size: cover;
+  background-position: top center;
+  height: 300px;
+  display: flex;
+  flex: column;
+  align-items: flex-end;
+  flex: 1 0 300px;
+}
+.show-summary:first-child {
+  margin-left: 0;
+}
+.show-summary:last-child {
+  margin-right: 0;
+}
+
+.show-summary__info {
+  background: rgba(255, 255, 255, 0.9);
+  padding: var(--gutter-small);
+  width: 100%;
+}
+
+.show-summary__image {
+  height: 200px;
+}
+
+@media (max-width: 45em) {
   .show-summary {
-    display: flex;
-    margin-bottom: var(--gutter);
+    height: 150px;
+    margin-left: var(--gutter-small) !important;
+    margin-right: var(--gutter-small) !important;
   }
-
-  .show-summary__time {
-    background: #eee;
-    flex: 0 0 5em;
-    text-align: center;
-    padding: var(--gutter-small);
-    margin-right: var(--gutter-small);
-  }
-
-  .show-summary__info {
-    flex-grow: 1;
-    margin-top: var(--gutter-small);
-    margin-bottom: var(--gutter-small);
-  }
+}
 
 </style>

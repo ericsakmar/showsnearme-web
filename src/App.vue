@@ -104,4 +104,10 @@ export default {
   text-align: right;
 }
 
+@media (max-width: 45em) {
+  .actions {
+    margin: var(--gutter-small);
+  }
+}
+
 </style>
