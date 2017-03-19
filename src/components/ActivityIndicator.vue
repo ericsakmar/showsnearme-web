@@ -42,7 +42,10 @@ export default {
 
 <style scoped>
 
-.activity-indicator {
+@media (max-width: 45em) {
+  .activity-indicator {
+    margin: var(--gutter-small);
+  }
 }
 
 </style>

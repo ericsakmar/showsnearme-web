@@ -1,0 +1,10 @@
+#!/bin/bash
+
+rm -rf ../web-dist/dist
+cp -r ./dist ../web-dist/dist
+cd ../web-dist
+git status
+git add .
+git commit -a -m "updates for deployment"
+git push heroku master
+cd ../web
