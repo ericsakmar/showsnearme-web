@@ -40,12 +40,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="stylus" scoped>
+@require "../styles/style"
 
-@media (max-width: 45em) {
-  .activity-indicator {
-    margin: var(--gutter-small);
-  }
-}
+.activity-indicator
+  @media (max-width: screen-small) 
+    margin gutter-small
 
 </style>

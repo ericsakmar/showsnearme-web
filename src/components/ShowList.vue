@@ -1,30 +1,37 @@
 <template>
-  <div class="show-list">
+  <section class="show-list">
 
-    <div v-for="day in groupByDate" class="day">
+    <section v-for="day in groupByDate" class="day">
       <h1 class="header header--day">{{day.date | date}}</h1>
 
       <div class="day-group">
 
-        <article class="show-summary" v-for="show in day.shows"
-          v-bind:style="{ backgroundImage: 'url(' + (show.cover && show.cover.source) + ')'}">
+        <a class="show-summary" 
+          v-bind:title="getLinkTitle(show)"
+          v-for="show in day.shows" 
+          v-bind:style="getBackground(show)"
+          :href="'https://facebook.com/' + show.remoteId" 
+          target="_blank"
+          rel="noopener">
 
           <div class="show-summary__info">
-            <h1 class="header">
-              <a :href="'https://facebook.com/' + show.remoteId" target="_blank">{{show.name}}</a>
-            </h1>
-            <p>
+
+            <h1 class="header">{{show.name}}</h1>
+
+            <p class="show-summary__text">
               <span>{{ show.start_time | time }}</span>
               <span v-if="show.place.length > 0">at {{ show.place[0].name }}</span>
             </p>
+
           </div>
 
-        </article>
+        </a>
 
       </div>
-    </div>
 
-  </div>
+    </section>
+
+  </section>
 </template>
 
 <script>
@@ -35,6 +42,18 @@ export default {
   name: 'show-list',
   props: ['shows'],
   filters: { date, time },
+
+  data() {
+    return {
+      backgroundImages: [],
+    };
+  }, 
+
+  mounted() {
+    this.updateVisibleBackgrounds();
+    window.addEventListener('scroll', this.updateVisibleBackgrounds);
+    window.addEventListener('resize', this.updateVisibleBackgrounds);
+  },
 
   computed: {
     groupByDate: function() {
@@ -55,54 +74,106 @@ export default {
       return arrayed;
     }
   },
+
+  methods: {
+
+    updateVisibleBackgrounds() {
+      const articles = document.querySelectorAll('.show-summary');
+      this.backgroundImages = Array.prototype
+        .map.call(articles, article => article.getBoundingClientRect().top < document.documentElement.clientHeight)
+        .filter(visible => visible)
+        .map((visible, i) => this.shows[i])
+        .reduce((images, show) => {
+          images[show.remoteId] = show.cover && show.cover.source;
+          return images;
+        }, {});
+    },
+
+    getBackground(show) {
+      const image = this.backgroundImages[show.remoteId];
+      if (image) {
+        return {
+          backgroundImage: `url(${image})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'top center',
+        };
+      }
+      else {
+        return {
+          backgroundImage: "url('/static/icons/logo-120.png')",
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center',
+        };
+      }
+    },
+
+    getLinkTitle(show) {
+      let desc = show.name + ', ' + this.$options.filters.time(show.start_time);
+
+      if (show.place.length > 0) {
+        desc += ' at ' + show.place[0].name;
+      }
+
+      desc += ' (opens in a new window)';
+
+      return desc;
+    }
+
+  },
+
 }
 </script>
 
-<style>
+<style lang="stylus" scoped>
+@require "../styles/style"
 
-.header--day {
-  background: var(--accent-color);
-  padding: var(--gutter-small);
-}
+.header--day
+  text-align center
+  font-family 'Rubik Mono One', monospace
+  padding-top gutter-small
+  padding-bottom gutter-small
+  position -webkit-sticky
+  position -moz-sticky
+  position -ms-sticky
+  position -o-sticky
+  position sticky
+  top 0
 
-.day-group {
-  display: flex;
-  flex-wrap: wrap;
-}
+.day
+  padding gutter-small
+  padding-bottom 0
+  margin-bottom gutter
 
-.show-summary {
-  margin: var(--gutter-small);
-  background-size: cover;
-  background-position: top center;
-  height: 300px;
-  display: flex;
-  flex: column;
-  align-items: flex-end;
-  flex: 1 0 300px;
-}
-.show-summary:first-child {
-  margin-left: 0;
-}
-.show-summary:last-child {
-  margin-right: 0;
-}
+  &:nth-child(2n+1), &:nth-child(2n+1) .header--day
+    background-color accent-color-1
 
-.show-summary__info {
-  background: rgba(255, 255, 255, 0.9);
-  padding: var(--gutter-small);
-  width: 100%;
-}
+  &:nth-child(2n+2), &:nth-child(2n+2) .header--day
+    background-color ghostwhite
 
-.show-summary__image {
-  height: 200px;
-}
+.day-group
+  margin-top gutter-small
+  display flex
+  flex-wrap wrap
 
-@media (max-width: 45em) {
-  .show-summary {
-    height: 150px;
-    margin-left: var(--gutter-small) !important;
-    margin-right: var(--gutter-small) !important;
-  }
-}
+.show-summary
+  margin-left gutter-small
+  margin-right gutter-small
+  margin-bottom gutter-med
+  background-color base-color
+  height 300px
+  display flex
+  flex column
+  align-items flex-end
+  flex 1 0 300px
+  text-decoration none
+
+.show-summary__info
+  background-color rgba(255, 255, 255, 0.92) 
+  padding gutter-small
+  width 100%
+
+.show-summary__text
+  margin-top gutter-small
+  color base-color
 
 </style>

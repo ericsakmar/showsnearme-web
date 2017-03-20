@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main id="main">
 
     <ActivityIndicator v-if="isLoading"></ActivityIndicator>
 
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-  </div>
+  </main>
 </template>
 
 <script>
@@ -34,6 +34,8 @@ export default {
     return {
       shows: [],
       isLoading: false,
+      daysToShow: 4,
+      queryDateFormat: 'YYYY-MM-DD[T00:00:00]Z',
     };
   },
 
@@ -50,16 +52,16 @@ export default {
   methods: {
 
     next() {
-      const now = moment(this.$route.query.since).add(7, 'days');
-      const since = now.format();
-      const until = now.add(8, 'days').format();
+      const now = moment(this.$route.query.since).add(this.daysToShow, 'days');
+      const since = now.format(this.queryDateFormat);
+      const until = now.add(this.daysToShow, 'days').format(this.queryDateFormat);
       this.$router.push({ path: '/shows', query: { since, until } });
     },
 
     previous() {
       const now = moment(this.$route.query.since);
-      const until = now.format();
-      const since = now.subtract(7, 'days').format();
+      const until = now.format(this.queryFormat);
+      const since = now.subtract(this.daysToShow, 'days').format(this.queryFormat);
       this.$router.push({ path: '/shows', query: { since, until } });
     },
 
@@ -70,10 +72,9 @@ export default {
       }
       else {
         const now = moment();
-        const since = now.subtract(6, 'hours').format();
-        const until = now.add(8, 'days').format();
+        const since = now.format(this.queryDateFormat);
+        const until = now.add(this.daysToShow, 'days').format(this.queryDateFormat);
         this.fetchShows(since, until);
-//        this.$router.push({ path: '/shows', query: { since, until } });
       }
 
     },
@@ -84,6 +85,10 @@ export default {
       window.fetch(`${process.env.API}/events?since=${since}&until=${until}`)
         .then(res => res.json())
         .then(shows => {
+          const now = moment();
+          return shows.filter(show => now.isBefore(moment(show.end_time)));
+        })
+        .then(shows => {
           this.shows = shows;
           this.isLoading = false;
         });
@@ -93,21 +98,41 @@ export default {
 }
 </script>
 
-<style scoped>
-.actions {
-  display: flex;
-}
-.actions div {
-  flex-grow: 1;
-}
-.actions div:last-child {
-  text-align: right;
-}
+<style lang="stylus">
+@require "./styles/style"
 
-@media (max-width: 45em) {
-  .actions {
-    margin: var(--gutter-small);
-  }
-}
+.actions 
+  display flex
+
+  div 
+    flex-grow 1
+
+  div:last-child
+    text-align right
+
+  @media (max-width: screen-small)
+    margin gutter-small
+
+// these should go to the header component
+.logo
+  margin-bottom gutter
+  font-size 3em
+  text-decoration none
+  text-align center
+  color base-color !important
+  display block
+
+  @media (max-width: screen-med)
+    margin-top gutter
+    font-size 2em
+
+  @media (max-width: screen-real-small)
+    font-size 1.25em
+
+header
+  font-family 'Rubik Mono One', monospace
+  
+.header
+  font-weight 700
 
 </style>

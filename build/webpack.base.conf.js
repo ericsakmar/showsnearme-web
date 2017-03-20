@@ -14,7 +14,7 @@ var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: ['whatwg-fetch', './src/main.js']
+    app: ['babel-polyfill', 'whatwg-fetch', './src/main.js']
   },
   output: {
     path: config.build.assetsRoot,
@@ -107,11 +107,12 @@ module.exports = {
       minify: true,
       staticFileGlobs: [
         'static/reset.css',
-        'static/style.css',
-        'static/manifest.json',
       ],
       mergeStaticsConfig: true,
-      runtimeCaching: [],
+      runtimeCaching: [{
+        urlPattern: /\/proxy\/events/,
+        handler: 'networkFirst',
+      }],
     }),
   ]
 }
