@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,33 +12,26 @@
     <link rel="shortcut icon" href="/static/icons/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/static/icons/favicon.ico" type="image/x-icon">
 
+    <meta name="apple-mobile-web-app-title" content="Shows">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="/static/icons/logo-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/logo-152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/logo-167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/logo-180.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One|Rubik:400,700" rel="stylesheet">
     <link rel="stylesheet" href="/static/reset.css">
-    <link rel="stylesheet" href="/static/style.css">
   </head>
 
   <body>
 
+    <a href="#main">Skip to Main Content</a>
+
     <div class="page">
+
       <header>
-
-        <a href="/" class="logo">
-
-          <div class="logo--big">
-            <p>shows</p>
-            <p>near</p>
-            <p>me</p>
-          </div>
-
-          <div class="logo-small">
-            <p>shows near me</p>
-          </div>
-        </a>
-
-        <!--
-        <p>A crowd-sourced community calendar of shows, performances and events of
-          the local, independent and diy variety.</p>
-        -->
-
+        <h1 class="logo">Shows Near Me</h1>
       </header>
 
       <div class="content">
@@ -46,8 +39,9 @@
           <router-view></router-view>
         </div>
       </div>
-    </div>
 
+    </div>
+    
 <script>
 
   // service worker

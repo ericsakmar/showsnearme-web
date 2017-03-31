@@ -1,0 +1,51 @@
+base-color = #29292E
+bg-color = white
+accent-color-1 = aliceblue
+accent-color-2 = cornsilk
+accent-color-3 = honeydew
+gutter = 1rem
+gutter-med = 0.5rem
+gutter-small = 0.25rem
+screen-med = 55em
+screen-small = 45em
+screen-real-small = 35em
+
+html
+  font-size 125%
+
+body
+  font-family 'Rubik', monospace
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  margin gutter 0.5em
+  color base-color
+
+  @media (max-width: screen-small)
+    margin gutter-small 0
+
+a
+  line-height 1.1em
+
+a:link
+  color #145b9b
+
+a:visited
+  color #478ECE
+
+a:focus
+  outline 0.2em solid goldenrod
+
+[href="#main"]
+  position absolute
+  top 0
+  right 100%
+
+[href="#main"]:focus
+  right auto
+
+.button
+  background-color #145b9b
+  color bg-color !important
+  padding gutter-small gutter
+  display inline-block
+
