@@ -1,9 +1,12 @@
 base-color = #29292E
-bg-color = white
+bg-color = ghostwhite
+light-gray = #ccc
+dark-gray = rgba(0, 0, 0, 0.75)
 accent-color-1 = aliceblue
 accent-color-2 = cornsilk
 accent-color-3 = honeydew
 gutter = 1rem
+gutter-big = 2rem
 gutter-med = 0.5rem
 gutter-small = 0.25rem
 screen-med = 55em
@@ -19,6 +22,7 @@ body
   -moz-osx-font-smoothing grayscale
   margin gutter 0.5em
   color base-color
+  background bg-color
 
   @media (max-width: screen-small)
     margin gutter-small 0
@@ -49,3 +53,14 @@ a:focus
   padding gutter-small gutter
   display inline-block
 
+.page
+  margin-left 10%
+  margin-right 10%
+
+  @media (max-width: screen-med)
+    margin-left 5%
+    margin-right 5%
+
+  @media (max-width: screen-small)
+    margin-left 0
+    margin-right 0

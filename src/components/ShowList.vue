@@ -2,7 +2,8 @@
   <section class="show-list">
 
     <section v-for="day in groupByDate" class="day">
-      <h1 class="header header--day">{{day.date | date}}</h1>
+
+      <h1 class="header--day">{{day.date | date}}</h1>
 
       <div class="day-group">
 
@@ -128,10 +129,13 @@ export default {
 @require "../styles/style"
 
 .header--day
-  text-align center
-  font-family 'Rubik Mono One', monospace
+  color dark-gray
+  text-transform uppercase
+  margin-left gutter-med
+  margin-right gutter-med
   padding-top gutter-small
   padding-bottom gutter-small
+  background bg-color
   position -webkit-sticky
   position -moz-sticky
   position -ms-sticky
@@ -139,16 +143,8 @@ export default {
   position sticky
   top 0
 
-.day
-  padding gutter-small
-  padding-bottom 0
-  margin-bottom gutter
-
-  &:nth-child(2n+1), &:nth-child(2n+1) .header--day
-    background-color accent-color-1
-
-  &:nth-child(2n+2), &:nth-child(2n+2) .header--day
-    background-color ghostwhite
+.day:not(:last-child)
+  margin-bottom gutter-big
 
 .day-group
   margin-top gutter-small
@@ -156,9 +152,9 @@ export default {
   flex-wrap wrap
 
 .show-summary
-  margin-left gutter-small
-  margin-right gutter-small
-  margin-bottom gutter-med
+  margin-left gutter-med
+  margin-right gutter-med
+  margin-bottom gutter
   background-color base-color
   height 300px
   display flex
@@ -168,12 +164,13 @@ export default {
   text-decoration none
 
 .show-summary__info
-  background-color rgba(255, 255, 255, 0.92) 
-  padding gutter-small
+  background-color dark-gray 
+  padding gutter-med
   width 100%
+  color bg-color
 
 .show-summary__text
   margin-top gutter-small
-  color base-color
+  color light-gray
 
 </style>

@@ -3,7 +3,7 @@
 
     <ActivityIndicator v-if="isLoading"></ActivityIndicator>
 
-    <QuickLinks></QuickLinks>
+    <QuickLinks v-if="!isLoading"></QuickLinks>
 
     <ShowList :shows="shows" v-if="!isLoading"></ShowList>
     
@@ -39,7 +39,7 @@ export default {
     return {
       shows: [],
       isLoading: false,
-      daysToShow: 4,
+      daysToShow: 3,
       queryDateFormat: 'YYYY-MM-DD[T00:00:00]Z',
     };
   },
@@ -108,15 +108,14 @@ export default {
 
 .actions 
   display flex
+  margin-left gutter-med
+  margin-right gutter-med
 
   div 
     flex-grow 1
 
   div:last-child
     text-align right
-
-  @media (max-width: screen-small)
-    margin gutter-small
 
 // these should go to the header component
 .logo
