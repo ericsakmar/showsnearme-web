@@ -3,6 +3,8 @@
 
     <ActivityIndicator v-if="isLoading"></ActivityIndicator>
 
+    <QuickLinks></QuickLinks>
+
     <ShowList :shows="shows" v-if="!isLoading"></ShowList>
     
     <div class="actions" v-if="!isLoading">
@@ -19,15 +21,18 @@
 
 <script>
 import moment from 'moment';
-import ShowList from './components/ShowList';
+
 import ActivityIndicator from './components/ActivityIndicator';
+import QuickLinks from './components/QuickLinks';
+import ShowList from './components/ShowList';
 
 export default {
   name: 'app',
 
   components: {
+    ActivityIndicator,
+    QuickLinks,
     ShowList,
-    ActivityIndicator
   },
 
   data() {
@@ -41,12 +46,12 @@ export default {
 
   watch: {
     '$route' (to, from) {
-      this.setRange(to.query);
+      this.setRange(to.query.since, to.query.until);
     }
   },
 
   created () {
-    this.setRange(this.$route.query);
+    this.setRange(this.$route.query.since, this.$route.query.until);
   },
 
   methods: {
@@ -65,10 +70,10 @@ export default {
       this.$router.push({ path: '/shows', query: { since, until } });
     },
 
-    setRange(query) {
+    setRange(since, until) {
 
-      if (query.since && query.until) {
-        this.fetchShows(query.since, query.until);
+      if (since && until) {
+        this.fetchShows(since, until);
       }
       else {
         const now = moment();
