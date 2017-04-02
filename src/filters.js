@@ -6,11 +6,11 @@ export function time(value) {
 
 export function date(value) {
   return moment(value).calendar(null, {
-    sameDay: '[Today]',
-    nextDay: '[Tomorrow]',
-    nextWeek: 'dddd',
-    lastDay: '[Yesterday]',
-    lastWeek: '[Last] dddd',
+    sameDay: '[Today], MMMM Do',
+    nextDay: '[Tomorrow], MMMM Do',
+    nextWeek: 'dddd, MMMM Do',
+    lastDay: '[Yesterday], MMMM Do',
+    lastWeek: '[Last] dddd, MMMM Do',
     sameElse: 'dddd, MMMM Do'
   });
 }

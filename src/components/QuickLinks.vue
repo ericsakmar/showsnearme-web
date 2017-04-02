@@ -77,6 +77,8 @@ export default {
 .quick-links
   text-align center
   margin-bottom gutter
+  margin-left gutter-small
+  margin-right gutter-small
 
 .quick-link
   margin-left gutter-small
