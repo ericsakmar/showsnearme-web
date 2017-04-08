@@ -3,9 +3,15 @@
   <div class="quick-links">
 
     <!-- only show if TODAY is not visible -->
-    <router-link :to="{ path: 'shows' }" class="quick-link">Today</router-link>
+    <router-link 
+      :to="{ path: 'shows' }" 
+      :class="{ 'quick-link': true, 'quick-link-hidden': isToday }"
+    >Today</router-link>
 
-    <router-link :to="{ path: 'shows', query: tomorrow }" class="quick-link">Tomorrow</router-link>
+    <router-link 
+      :to="{ path: 'shows', query: tomorrow }" 
+      :class="{ 'quick-link': true, 'quick-link-hidden': isTomorrow }"
+    >Tomorrow</router-link>
 
     <router-link :to="{ path: 'shows', query: thisWeekend }" class="quick-link">{{ isWeekend ? 'Next' : 'This' }} Weekend</router-link>
 
@@ -18,13 +24,13 @@
 import moment from 'moment';
 export default {
 
-  name: 'ActivityIndicator',
+  name: 'QuickLinks',
 
-  data() {
-    return {
-      queryDateFormat: 'YYYY-MM-DD[T00:00:00]Z',
-    };
-  },
+  props: [
+    'queryDateFormat',
+    'since',
+    'until',
+  ],
 
   computed: {
 
@@ -33,11 +39,21 @@ export default {
       return today === 5 || today === 6 || today === 0;
     },
 
+    isToday() {
+      const today = moment().format(this.queryDateFormat);
+      return today === this.since;
+    },
+
     tomorrow() {
       const tomorrow = moment().add(1, "day");
       const since = tomorrow.format(this.queryDateFormat);
       const until = tomorrow.add(1, 'day').format(this.queryDateFormat);
       return { since, until };
+    },
+
+    isTomorrow() {
+      const tomorrow = moment().add(1, "day").format(this.queryDateFormat);
+      return tomorrow === this.since;
     },
 
     thisWeekend() {
@@ -64,7 +80,7 @@ export default {
       const until = friday.add(3, 'days').format(this.queryDateFormat);
 
       return { since, until };
-    }
+    },
 
   },
 
@@ -79,9 +95,22 @@ export default {
   margin-bottom gutter
   margin-left gutter-small
   margin-right gutter-small
+  background bg-color
+  width 100%
+
+  @media (max-height: 50em)
+    position fixed
+    bottom 0
+    left 0
+    margin-bottom 0
+    padding-top gutter-med
+    padding-bottom gutter-med
 
 .quick-link
   margin-left gutter-small
   margin-right gutter-small
+
+.quick-link-hidden
+  display none
 
 </style>
