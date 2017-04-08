@@ -3,7 +3,12 @@
 
     <ActivityIndicator v-if="isLoading"></ActivityIndicator>
 
-    <QuickLinks v-if="!isLoading"></QuickLinks>
+    <QuickLinks 
+      v-if="!isLoading"
+      :queryDateFormat="queryDateFormat"
+      :since="since"
+      :until="until"
+    ></QuickLinks>
 
     <ShowList :shows="shows" v-if="!isLoading"></ShowList>
     
@@ -36,12 +41,16 @@ export default {
   },
 
   data() {
+
     return {
       shows: [],
       isLoading: false,
       daysToShow: 3,
       queryDateFormat: 'YYYY-MM-DD[T00:00:00]Z',
+      since: null,
+      until: null,
     };
+
   },
 
   watch: {
@@ -73,14 +82,16 @@ export default {
     setRange(since, until) {
 
       if (since && until) {
-        this.fetchShows(since, until);
+        this.since = since;
+        this.until = until;
       }
       else {
         const now = moment();
-        const since = now.format(this.queryDateFormat);
-        const until = now.add(this.daysToShow, 'days').format(this.queryDateFormat);
-        this.fetchShows(since, until);
+        this.since = now.format(this.queryDateFormat);
+        this.until = now.add(this.daysToShow, 'days').format(this.queryDateFormat);
       }
+
+      this.fetchShows(this.since, this.until);
 
     },
 
