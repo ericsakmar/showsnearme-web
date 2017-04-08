@@ -8,6 +8,7 @@
         <td v-for="day in week">
           <router-link
             :to="{ path: 'shows', query: getRange(day) }"
+            :class="{ 'calendar-day': true }"
           >{{day.format('DD')}}</router-link>
         </td>
       </tr>
@@ -78,4 +79,14 @@ export default {
 
 <style lang="stylus">
 @require "../styles/style"
+
+a.calendar-day
+  display inline-block
+  background-color link-color
+  color bg-color
+  width 100%
+  text-decoration none
+  margin 0.1em
+  padding 0.1em
+
 </style>
