@@ -2,34 +2,32 @@
 
   <div class="quick-links">
 
-    <a href="#" v-on:click.prevent="showCalendar = !showCalendar">Calendar</a>
+    <router-link 
+      :to="{ path: 'shows' }" 
+      :class="{ 'quick-link': true, 'quick-link-hidden': isToday }"
+    >Today</router-link>
 
-    <div :class="{ calendar: true, 'calendar-hidden': !showCalendar }">
+    <router-link 
+      :to="{ path: 'shows', query: tomorrow }" 
+      :class="{ 'quick-link': true, 'quick-link-hidden': isTomorrow }"
+    >Tomorrow</router-link>
 
-      <router-link 
-        :to="{ path: 'shows' }" 
-        :class="{ 'quick-link': true, 'quick-link-hidden': isToday }"
-      >Today</router-link>
+    <router-link 
+      :to="{ path: 'shows', query: thisWeekend }" 
+      class="quick-link"
+    >{{ isWeekend ? 'Next' : 'This' }} Weekend</router-link>
 
-      <router-link 
-        :to="{ path: 'shows', query: tomorrow }" 
-        :class="{ 'quick-link': true, 'quick-link-hidden': isTomorrow }"
-      >Tomorrow</router-link>
-
-      <router-link 
-        :to="{ path: 'shows', query: thisWeekend }" 
-        class="quick-link"
-      >{{ isWeekend ? 'Next' : 'This' }} Weekend</router-link>
-
-    </div>
+    <Calendar></Calendar>
 
   </div>
 
 </template>
 
 <script>
-
 import moment from 'moment';
+
+import Calendar from './Calendar';
+
 export default {
 
   name: 'QuickLinks',
@@ -40,10 +38,8 @@ export default {
     'until',
   ],
 
-  data() {
-    return {
-      showCalendar: false,
-    };
+  components: {
+    Calendar,
   },
 
   computed: {
@@ -125,12 +121,6 @@ export default {
   margin-right gutter-small
 
 .quick-link-hidden
-  display none
-
-.calendar
-  margin-top gutter
-
-.calendar-hidden
   display none
 
 </style>
