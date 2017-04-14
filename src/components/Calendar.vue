@@ -1,26 +1,32 @@
 <template>
-  <div class="calendar">
+  <div v-if="weeks" class="calendar">
 
-  <div class="calendar-nav">
-    <a href="#">&lt;&lt;</a>
-    {{ start.format('MMM D') }} to {{ end.format('MMM D') }}
-    <a href="#">&gt;&gt;</a>
-  </div>
+    <div class="calendar-nav">
+      <a @click.prevent="back()" href="#">&lt;&lt;</a>
+      {{ start.format('MMM D') }} to {{ end.format('MMM D') }}
+      <a @click.prevent="forward()" href="#">&gt;&gt;</a>
+    </div>
 
-  <table class="calendar-links">
+    <table class="calendar-links">
 
-    <tbody>
-      <tr v-for="week in weeks">
-        <td v-for="day in week">
-          <router-link
-            :to="{ path: 'shows', query: getRange(day.day) }"
-            :class="{ 'calendar-day': true, 'calendar-today': day.today, 'calendar-this-month': day.thisMonth }"
-          >{{day.formatted}}</router-link>
-        </td>
-      </tr>
-    </tbody>
+      <tbody>
 
-  </table>
+        <tr v-for="week in weeks">
+
+          <td v-for="day in week">
+
+            <router-link
+              :to="{ path: 'shows', query: getRange(day.day) }"
+              :class="{ 'calendar-day': true, 'calendar-today': day.today, 'calendar-this-month': day.thisMonth }"
+            >{{day.formatted}}</router-link>
+
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
 
   </div>
 </template>
@@ -38,33 +44,37 @@ export default {
   ],
 
   data() {
-    return this.buildCalendar();
+    return {
+      end: null,
+      start: null,
+      weeks: null,
+    };
   },
 
   created() {
+    this.buildCalendar(this.date);
   },
 
   methods: {
 
     forward() {
-
+      this.buildCalendar(this.end);
     },
 
     back() {
-
+      this.buildCalendar(this.start.clone().subtract(4, 'weeks'));
     },
 
     getRange(day) {
-
       return {
         since: day.format(this.queryDateFormat),
         until: day.clone().add(this.daysToShow, 'days').format(this.queryDateFormat),
       };
-
     },
 
-    buildCalendar() {
-      const today = moment(this.date);
+    buildCalendar(from) {
+      const date = moment(this.date);
+      const today = moment(from);
       const start = today.clone().startOf('week');
       const end = today.clone().add(4, 'weeks').endOf('week');
       const day = start.clone();
@@ -83,20 +93,17 @@ export default {
         weeks[week].push({
           day: day.clone(),
           formatted: day.format('D'),
-          today: day.isSame(today, 'day'),
-          thisMonth: day.month() === today.month(),
+          today: day.isSame(date, 'day'),
+          thisMonth: day.month() === date.month(),
         });
 
         day.add(1, 'day');
       }
 
-      return {
-        weeks,
-        start,
-        end,
-      };
+      this.weeks = weeks;
+      this.start = start;
+      this.end = end;
     },
-
 
   },
 
