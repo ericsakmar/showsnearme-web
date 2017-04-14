@@ -131,22 +131,16 @@ export default {
 // these should go to the header component
 .logo
   margin-bottom gutter
-  font-size 3em
+  font-size 13vw
   text-decoration none
   text-align center
   color base-color !important
   display block
+  font-family 'GraphiqueProNext', monospace
 
   @media (max-width: screen-med)
     margin-top gutter
-    font-size 2em
 
-  @media (max-width: screen-real-small)
-    font-size 1.25em
-
-header
-  font-family 'Rubik Mono One', monospace
-  
 .header
   font-weight 700
 

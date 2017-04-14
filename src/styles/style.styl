@@ -15,6 +15,11 @@ screen-med = 55em
 screen-small = 45em
 screen-real-small = 35em
 
+@font-face
+  font-family 'GraphiqueProNext'
+  font-style normal
+  src url('~/static/fonts/GraphiqueProNext-Comp.otf') 
+
 html
   font-size 125%
 
@@ -55,6 +60,9 @@ a:focus
   padding gutter-small gutter
   display inline-block
   border 0
+  font-weight 700
+  font-family 'Rubik', monospace
+  font-size 100%
 
 .page
   margin-left 10%
@@ -67,3 +75,4 @@ a:focus
   @media (max-width: screen-real-small)
     margin-left 0
     margin-right 0
+
