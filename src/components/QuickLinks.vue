@@ -3,6 +3,7 @@
   <div class="quick-links">
 
     <Calendar
+      :date="date"
       :daysToShow="daysToShow"
       :queryDateFormat="queryDateFormat"
     ></Calendar>
@@ -21,6 +22,7 @@ export default {
   name: 'QuickLinks',
 
   props: [
+    'date',
     'daysToShow',
     'queryDateFormat',
   ],

@@ -7,6 +7,7 @@
       v-if="!isLoading"
       :queryDateFormat="queryDateFormat"
       :daysToShow="daysToShow"
+      :date="since"
     ></QuickLinks>
 
     <ShowList :shows="shows" v-if="!isLoading"></ShowList>
