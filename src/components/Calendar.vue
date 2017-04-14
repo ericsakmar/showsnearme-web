@@ -1,13 +1,31 @@
 <template>
   <div v-if="weeks" class="calendar">
 
-    <div class="calendar-nav">
-      <a @click.prevent="back()" href="#">&lt;&lt;</a>
-      {{ start.format('MMM D') }} to {{ end.format('MMM D') }}
-      <a @click.prevent="forward()" href="#">&gt;&gt;</a>
-    </div>
-
     <table class="calendar-links">
+
+      <thead>
+
+        <tr>
+          <td>
+            <button @click.prevent="back()" 
+              class="button calendar-nav__link"
+              title="Go Back"
+              href="#"
+            >&lt;&lt;</button>
+          </td>
+
+          <td colspan="5">{{ start.format('MMM D') }} to {{ end.format('MMM D') }}</td>
+
+          <td>
+            <button @click.prevent="forward()"
+              class="button calendar-nav__link"
+              title="Go Forward"
+              href="#"
+            >&gt;&gt;</button>
+          </td>
+        </tr>
+
+      </thead>
 
       <tbody>
 
@@ -17,7 +35,10 @@
 
             <router-link
               :to="{ path: 'shows', query: getRange(day.day) }"
-              :class="{ 'calendar-day': true, 'calendar-today': day.today, 'calendar-this-month': day.thisMonth }"
+              :class="{ 'calendar-day': true,
+              'calendar-month__even': day.day.month() % 2 === 0,
+              'calendar-month__odd': day.day.month() % 2 === 1,
+              'calendar-today': day.today }"
             >{{day.formatted}}</router-link>
 
           </td>
@@ -113,24 +134,45 @@ export default {
 <style lang="stylus">
 @require "../styles/style"
 
+.calendar
+  margin 0 auto
+  display inline-block
+
+.calendar-nav
+  display flex
+  padding gutter-tiny
+
+.calendar-nav__link
+  padding-left gutter-small
+  padding-right gutter-small
+  padding-top 0
+  font-weight 700
+  font-size 0.75em
+  width 100%
+  background transparent
+  color link-color !important
+
+.calendar-header
+  flex-grow 1
+
 .calendar-links
   border-collapse separate
-  border-spacing 0.1em
-  margin 0 auto
+  border-spacing gutter-tiny
 
 .calendar-day
   display inline-block
   background-color light-gray
-  color bg-color !important
   width 100%
   text-decoration none
-  padding 0.1em
-
-.calendar-this-month
-  background-color link-color 
+  padding gutter-tiny
 
 .calendar-today
-  background-color tomato
+  background-color cornsilk !important
 
+.calendar-month__even
+  background-color lighten(#ddd, 50%)
+
+.calendar-month__odd
+  background-color #ddd
 
 </style>
