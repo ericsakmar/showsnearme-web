@@ -14,7 +14,7 @@
             >&lt;&lt;</button>
           </td>
 
-          <td colspan="5">{{ start.format('MMM D') }} to {{ end.format('MMM D') }}</td>
+          <td class="calendar-header" colspan="5">{{ start.format('MMM D') }} to {{ end.format('MMM D') }}</td>
 
           <td>
             <button @click.prevent="forward()"
@@ -23,6 +23,16 @@
               href="#"
             >&gt;&gt;</button>
           </td>
+        </tr>
+
+        <tr>
+          <th class="calendar-heading">Sun</th>
+          <th class="calendar-heading">Mon</th>
+          <th class="calendar-heading">Tue</th>
+          <th class="calendar-heading">Wed</th>
+          <th class="calendar-heading">Thu</th>
+          <th class="calendar-heading">Fri</th>
+          <th class="calendar-heading">Sat</th>
         </tr>
 
       </thead>
@@ -137,6 +147,7 @@ export default {
 .calendar
   margin 0 auto
   display inline-block
+  font-size 1.25em
 
 .calendar-nav
   display flex
@@ -153,7 +164,12 @@ export default {
   color link-color !important
 
 .calendar-header
-  flex-grow 1
+  font-size 0.9em
+
+.calendar-heading
+  font-size 0.7em
+  color dark-gray
+  text-transform uppercase
 
 .calendar-links
   border-collapse separate
@@ -164,7 +180,7 @@ export default {
   background-color light-gray
   width 100%
   text-decoration none
-  padding gutter-tiny
+  padding gutter-small
 
 .calendar-today
   background-color cornsilk !important

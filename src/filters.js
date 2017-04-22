@@ -6,8 +6,8 @@ export function time(value) {
 
 export function date(value) {
   return moment(value).calendar(null, {
-    sameDay: '[Today], MMMM Do',
-    nextDay: '[Tomorrow], MMMM Do',
+    sameDay: '[Today] - dddd, MMMM Do',
+    nextDay: '[Tomorrow] - dddd, MMMM Do',
     nextWeek: 'dddd, MMMM Do',
     lastDay: '[Yesterday], MMMM Do',
     lastWeek: '[Last] dddd, MMMM Do',

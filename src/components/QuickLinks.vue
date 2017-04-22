@@ -2,7 +2,13 @@
 
   <div class="quick-links">
 
+    <button @click.prevent="showCalendar = !showCalendar" 
+      v-if="!showCalendar"
+      class="button"
+    >Calendar</button>
+
     <Calendar
+      v-if="showCalendar"
       :date="date"
       :daysToShow="daysToShow"
       :queryDateFormat="queryDateFormat"
@@ -21,14 +27,20 @@ export default {
 
   name: 'QuickLinks',
 
+  components: {
+    Calendar,
+  },
+
   props: [
     'date',
     'daysToShow',
     'queryDateFormat',
   ],
 
-  components: {
-    Calendar,
+  data() {
+    return {
+      showCalendar: false,
+    };
   },
 
   computed: {
@@ -44,24 +56,5 @@ export default {
 .quick-links
   text-align center
   margin-bottom gutter
-  margin-left gutter-small
-  margin-right gutter-small
-  background bg-color
-  width 100%
-
-  @media (max-height: 50em)
-    position fixed
-    bottom 0
-    left 0
-    margin-bottom 0
-    padding-top gutter-med
-    padding-bottom gutter-med
-
-.quick-link
-  margin-left gutter-small
-  margin-right gutter-small
-
-.quick-link-hidden
-  display none
 
 </style>
