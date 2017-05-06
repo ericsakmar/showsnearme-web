@@ -6,12 +6,12 @@
 
       <a href="#"
         @click.prevent="showCalendar = !showCalendar" 
-        class="button button--clear quick-link"
+        class="quick-link"
       >Calendar</a>
 
-      <a href="#" class="button button--clear quick-link">Community</a>
+      <a href="#" class="quick-link">Community</a>
 
-      <a href="#" class="button button--clear quick-link">More Info</a>
+      <a href="#" class="quick-link">More Info</a>
 
     </div>
 
@@ -81,5 +81,10 @@ export default {
   margin-left gutter-med
   margin-right gutter-med
   padding-bottom gutter-med
+
+.quick-link
+  text-decoration none
+  padding gutter-small gutter
+  display inline-block
 
 </style>
