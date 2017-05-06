@@ -5,7 +5,7 @@
     <div class="quick-links">
 
       <a href="#"
-        @click.prevent="showCalendar = !showCalendar" 
+        @click.prevent="toggleCalendar()" 
         class="quick-link"
       >Calendar</a>
 
@@ -16,7 +16,7 @@
       <span class="quick-link__divider">&#183;</span>
 
       <a href="#"
-        @click.prevent="showInfo = !showInfo" 
+        @click.prevent="toggleInfo()" 
         class="quick-link">About</a>
 
     </div>
@@ -75,7 +75,27 @@ export default {
     };
   },
 
-  computed: {
+  methods: {
+
+    toggleCalendar() {
+      if (this.showCalendar) {
+        this.showCalendar = false;
+      }
+      else {
+        this.showCalendar = true;
+        this.showInfo = false;
+      }
+    },
+
+    toggleInfo() {
+      if (this.showInfo) {
+        this.showInfo = false;
+      }
+      else {
+        this.showInfo = true;
+        this.showCalendar = false;
+      }
+    },
 
   },
 
