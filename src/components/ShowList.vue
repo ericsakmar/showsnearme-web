@@ -129,12 +129,14 @@ export default {
 @require "../styles/style"
 
 .header--day
+  text-align center
   color dark-gray
   text-transform uppercase
+  font-weight 700
   margin-left gutter-med
   margin-right gutter-med
-  padding-top gutter-small
-  padding-bottom gutter-small
+  padding-top gutter-med
+  padding-bottom gutter-med
   background bg-color
   position -webkit-sticky
   position -moz-sticky

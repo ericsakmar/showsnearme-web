@@ -1,20 +1,32 @@
 <template>
 
-  <div class="quick-links">
+  <nav class="quick-links-nav">
 
-    <button @click.prevent="showCalendar = !showCalendar" 
-      v-if="!showCalendar"
-      class="button"
-    >Calendar</button>
+    <div class="quick-links">
 
-    <Calendar
-      v-if="showCalendar"
-      :date="date"
-      :daysToShow="daysToShow"
-      :queryDateFormat="queryDateFormat"
-    ></Calendar>
+      <a href="#"
+        @click.prevent="showCalendar = !showCalendar" 
+        class="button button--clear quick-link"
+      >Calendar</a>
 
-  </div>
+      <a href="#" class="button button--clear quick-link">Community</a>
+
+      <a href="#" class="button button--clear quick-link">More Info</a>
+
+    </div>
+
+    <div class="quick-links__content" v-if="showCalendar">
+
+      <Calendar
+        v-if="showCalendar"
+        :date="date"
+        :daysToShow="daysToShow"
+        :queryDateFormat="queryDateFormat"
+      ></Calendar>
+
+    </div>
+
+  </nav>
 
 </template>
 
@@ -53,8 +65,21 @@ export default {
 <style lang="stylus">
 @require "../styles/style"
 
-.quick-links
+.quick-links-nav
   text-align center
-  margin-bottom gutter
+
+.quick-links
+  margin-bottom gutter-med
+  margin-left gutter-med
+  margin-right gutter-med
+  text-align center
+  border-top 0.2em double base-color
+  border-bottom 0.2em double base-color
+
+.quick-links__content
+  border-bottom 0.2em double base-color
+  margin-left gutter-med
+  margin-right gutter-med
+  padding-bottom gutter-med
 
 </style>

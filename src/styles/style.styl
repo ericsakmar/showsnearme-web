@@ -1,4 +1,4 @@
-base-color = #29292E
+base-color = rgba(0, 0, 0, 0.75) 
 bg-color = ghostwhite
 light-gray = #ccc
 dark-gray = rgba(0, 0, 0, 0.75)
@@ -20,21 +20,6 @@ screen-real-small = 35em
   font-style normal
   src url('~/static/fonts/GraphiqueProNext-Comp.otf') 
 
-@font-face
-  font-family 'GraphiqueProNext-Shadow'
-  font-style normal
-  src url('~/static/fonts/GraphiqueProNext-Shadow.otf') 
-
-@font-face
-  font-family 'GraphiqueProNext-Shadow-LN'
-  font-style normal
-  src url('~/static/fonts/GraphiqueProNext-Shadow-LN.otf') 
-
-@font-face
-  font-family 'GraphiqueProNext-Solid'
-  font-style normal
-  src url('~/static/fonts/GraphiqueProNext-Solid.otf') 
-
 html
   font-size 125%
 
@@ -53,13 +38,13 @@ a
   line-height 1.1em
 
 a:link
-  color #145b9b
+  color link-color
 
 a:visited
   color #478ECE
 
-a:focus
-  outline 0.2em solid goldenrod
+*:focus
+  outline 0.1em solid link-color
 
 [href="#main"]
   position absolute
@@ -70,14 +55,20 @@ a:focus
   right auto
 
 .button
-  background-color #145b9b
-  color bg-color !important
+  background-color link-color
+  color bg-color
   padding gutter-small gutter
   display inline-block
   border 0
   font-weight 700
   font-family 'Rubik', monospace
   font-size 100%
+  text-decoration none
+
+.button--clear
+  background-color transparent
+  color base-color
+  font-weight 500
 
 .page
   margin-left 10%
