@@ -15,11 +15,13 @@
 
       <span class="quick-link__divider">&#183;</span>
 
-      <a href="#" class="quick-link">More Info</a>
+      <a href="#"
+        @click.prevent="showInfo = !showInfo" 
+        class="quick-link">About</a>
 
     </div>
 
-    <div class="quick-links__content" v-if="showCalendar">
+    <div class="quick-links__content" v-if="showCalendar | showInfo">
 
       <Calendar
         v-if="showCalendar"
@@ -27,6 +29,19 @@
         :daysToShow="daysToShow"
         :queryDateFormat="queryDateFormat"
       ></Calendar>
+
+      <div v-if="showInfo">
+
+        <p class="app-info">Shows Near Me is a crowd-sourced community calendar 
+          for live shows in Pittsburgh.</p>
+
+        <p class="app-info">Have a show? Want to see it here? Just post it to the
+          <a href="#">Shows Near Me group on Facebook</a>.</p>
+
+        <p class="app-info">Shows Near Me was created by 
+          <a href="#">Eric Sakmar</a> and is fuled by the community it serves.</p>
+
+      </div>
 
     </div>
 
@@ -56,6 +71,7 @@ export default {
   data() {
     return {
       showCalendar: false,
+      showInfo: false,
     };
   },
 
@@ -94,8 +110,8 @@ export default {
   @media (max-width: 22em)
     padding gutter-small gutter-tiny
 
-.quick-link__divider
-  @media (max-width: 22em)
-    display none
+.app-info
+  max-width 25em
+  margin gutter auto
 
 </style>
