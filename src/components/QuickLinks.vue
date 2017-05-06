@@ -84,7 +84,10 @@ export default {
 
 .quick-link
   text-decoration none
-  padding gutter-small gutter
+  padding gutter-small 1%
   display inline-block
+
+  @media (max-width: 20em)
+    padding gutter-small gutter-tiny
 
 </style>
