@@ -147,4 +147,8 @@ export default {
   @media (max-width: screen-real-small)
      font-size 18.5vw
 
+.logo-link
+  text-decoration none
+  color base-color !important
+
 </style>
