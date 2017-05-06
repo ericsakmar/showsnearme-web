@@ -9,7 +9,11 @@
         class="quick-link"
       >Calendar</a>
 
+      <span class="quick-link__divider">&#183;</span>
+
       <a href="#" class="quick-link">Community</a>
+
+      <span class="quick-link__divider">&#183;</span>
 
       <a href="#" class="quick-link">More Info</a>
 
@@ -87,7 +91,11 @@ export default {
   padding gutter-small 1%
   display inline-block
 
-  @media (max-width: 20em)
+  @media (max-width: 22em)
     padding gutter-small gutter-tiny
+
+.quick-link__divider
+  @media (max-width: 22em)
+    display none
 
 </style>
