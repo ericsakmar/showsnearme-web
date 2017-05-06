@@ -129,19 +129,22 @@ export default {
     text-align right
 
 // these should go to the header component
-.logo
+.big-header
   margin-bottom gutter
-  font-size 13vw
-  text-decoration none
   text-align center
-  color base-color !important
-  display block
-  font-family 'GraphiqueProNext', monospace
 
   @media (max-width: screen-med)
     margin-top gutter
 
-.header
-  font-weight 700
+.logo
+  font-size 15vw
+  color base-color
+  font-family 'GraphiqueProNext', monospace
+
+  @media (max-width: screen-med)
+    font-size 17vw
+
+  @media (max-width: screen-real-small)
+     font-size 18.5vw
 
 </style>

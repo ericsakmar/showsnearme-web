@@ -107,6 +107,7 @@ module.exports = {
       minify: true,
       staticFileGlobs: [
         'static/reset.css',
+        'static/fonts/*.otf',
       ],
       mergeStaticsConfig: true,
       runtimeCaching: [{
