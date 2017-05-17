@@ -1,20 +1,51 @@
 <template>
 
-  <div class="quick-links">
+  <nav class="quick-links-nav">
 
-    <button @click.prevent="showCalendar = !showCalendar" 
-      v-if="!showCalendar"
-      class="button"
-    >Calendar</button>
+    <div class="quick-links">
 
-    <Calendar
-      v-if="showCalendar"
-      :date="date"
-      :daysToShow="daysToShow"
-      :queryDateFormat="queryDateFormat"
-    ></Calendar>
+      <a href="#"
+        @click.prevent="toggleCalendar()" 
+        class="quick-link"
+      >Calendar</a>
 
-  </div>
+      <span class="quick-link__divider">&#183;</span>
+
+      <a href="#" class="quick-link">Community</a>
+
+      <span class="quick-link__divider">&#183;</span>
+
+      <a href="#"
+        @click.prevent="toggleInfo()" 
+        class="quick-link">About</a>
+
+    </div>
+
+    <div class="quick-links__content" v-if="showCalendar | showInfo">
+
+      <Calendar
+        v-if="showCalendar"
+        :date="date"
+        :daysToShow="daysToShow"
+        :queryDateFormat="queryDateFormat"
+      ></Calendar>
+
+      <div v-if="showInfo">
+
+        <p class="app-info">Shows Near Me is a crowd-sourced community calendar 
+          for live shows in Pittsburgh.</p>
+
+        <p class="app-info">Have a show? Want to see it here? Just post it to the
+          <a href="#">Shows Near Me group on Facebook</a>.</p>
+
+        <p class="app-info">Shows Near Me was created by 
+          <a href="#">Eric Sakmar</a> and is fueled by the <a href="#">community it serves</a>.</p>
+
+      </div>
+
+    </div>
+
+  </nav>
 
 </template>
 
@@ -40,10 +71,31 @@ export default {
   data() {
     return {
       showCalendar: false,
+      showInfo: false,
     };
   },
 
-  computed: {
+  methods: {
+
+    toggleCalendar() {
+      if (this.showCalendar) {
+        this.showCalendar = false;
+      }
+      else {
+        this.showCalendar = true;
+        this.showInfo = false;
+      }
+    },
+
+    toggleInfo() {
+      if (this.showInfo) {
+        this.showInfo = false;
+      }
+      else {
+        this.showInfo = true;
+        this.showCalendar = false;
+      }
+    },
 
   },
 
@@ -53,8 +105,34 @@ export default {
 <style lang="stylus">
 @require "../styles/style"
 
-.quick-links
+.quick-links-nav
   text-align center
-  margin-bottom gutter
+
+.quick-links
+  margin-bottom gutter-med
+  margin-left gutter-med
+  margin-right gutter-med
+  text-align center
+  border-top 0.2em double base-color
+  border-bottom 0.2em double base-color
+
+.quick-links__content
+  border-bottom 0.2em double base-color
+  margin-left gutter-med
+  margin-right gutter-med
+  padding-bottom gutter-med
+
+.quick-link
+  text-decoration none
+  padding gutter-small 1%
+  display inline-block
+
+  @media (max-width: 22em)
+    padding gutter-small gutter-tiny
+
+.app-info
+  max-width 25em
+  margin gutter auto
+  text-align left
 
 </style>

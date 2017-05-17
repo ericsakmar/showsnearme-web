@@ -102,7 +102,12 @@ export default {
         .then(res => res.json())
         .then(shows => {
           const now = moment();
-          return shows.filter(show => now.isBefore(moment(show.end_time)));
+          if (now.isSame(this.since, 'day')) {
+            return shows.filter(show => now.isBefore(moment(show.end_time)));
+          }
+          else {
+            return shows;
+          }
         })
         .then(shows => {
           this.shows = shows;
@@ -146,5 +151,9 @@ export default {
 
   @media (max-width: screen-real-small)
      font-size 18.5vw
+
+.logo-link
+  text-decoration none
+  color base-color !important
 
 </style>

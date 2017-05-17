@@ -1,4 +1,4 @@
-base-color = #29292E
+base-color = rgba(0, 0, 0, 0.75) 
 bg-color = ghostwhite
 light-gray = #ccc
 dark-gray = rgba(0, 0, 0, 0.75)
@@ -11,7 +11,7 @@ gutter-big = 2rem
 gutter-med = 0.5rem
 gutter-small = 0.25rem
 gutter-tiny = 0.1rem
-screen-med = 55em
+screen-med = 64em
 screen-small = 45em
 screen-real-small = 35em
 
@@ -19,21 +19,6 @@ screen-real-small = 35em
   font-family 'GraphiqueProNext'
   font-style normal
   src url('~/static/fonts/GraphiqueProNext-Comp.otf') 
-
-@font-face
-  font-family 'GraphiqueProNext-Shadow'
-  font-style normal
-  src url('~/static/fonts/GraphiqueProNext-Shadow.otf') 
-
-@font-face
-  font-family 'GraphiqueProNext-Shadow-LN'
-  font-style normal
-  src url('~/static/fonts/GraphiqueProNext-Shadow-LN.otf') 
-
-@font-face
-  font-family 'GraphiqueProNext-Solid'
-  font-style normal
-  src url('~/static/fonts/GraphiqueProNext-Solid.otf') 
 
 html
   font-size 125%
@@ -48,18 +33,19 @@ body
 
   @media (max-width: screen-small)
     margin 0
+    margin-bottom 0.5em
 
 a
-  line-height 1.1em
+  text-decoration-skip ink
 
 a:link
-  color #145b9b
+  color link-color
 
 a:visited
   color #478ECE
 
-a:focus
-  outline 0.2em solid goldenrod
+*:focus
+  outline 0.1em solid link-color
 
 [href="#main"]
   position absolute
@@ -70,7 +56,7 @@ a:focus
   right auto
 
 .button
-  background-color #145b9b
+  background-color link-color
   color bg-color !important
   padding gutter-small gutter
   display inline-block
@@ -78,16 +64,18 @@ a:focus
   font-weight 700
   font-family 'Rubik', monospace
   font-size 100%
+  text-decoration none
+
+.button--clear
+  background-color transparent
+  color base-color
+  font-weight 500
 
 .page
   margin-left 10%
   margin-right 10%
 
   @media (max-width: screen-med)
-    margin-left 5%
-    margin-right 5%
-
-  @media (max-width: screen-real-small)
     margin-left 0
     margin-right 0
 

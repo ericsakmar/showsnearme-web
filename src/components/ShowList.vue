@@ -129,12 +129,13 @@ export default {
 @require "../styles/style"
 
 .header--day
-  color dark-gray
-  text-transform uppercase
+  text-align center
+  color base-color 
+  font-weight 700
   margin-left gutter-med
   margin-right gutter-med
-  padding-top gutter-small
-  padding-bottom gutter-small
+  padding-top gutter-med
+  padding-bottom gutter-med
   background bg-color
   position -webkit-sticky
   position -moz-sticky
@@ -156,16 +157,20 @@ export default {
   margin-right gutter-med
   margin-bottom gutter
   background-color base-color
-  height 300px
+  height 15em
   display flex
   flex column
   align-items flex-end
-  flex 1 0 300px
+  flex 1 0 15em
   text-decoration none
   border 1px solid #eee
 
   @media (max-width: screen-small)
     margin-bottom gutter-med
+
+  @media (min-width: 100em)
+    flex-basis 30%
+    height 20em
 
 .show-summary__info
   background-color dark-gray 

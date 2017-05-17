@@ -48,8 +48,12 @@
               :class="{ 'calendar-day': true,
               'calendar-month__even': day.day.month() % 2 === 0,
               'calendar-month__odd': day.day.month() % 2 === 1,
-              'calendar-today': day.today }"
-            >{{day.formatted}}</router-link>
+              'calendar-today': day.today }">
+              
+              <div class="calendar-month">{{day.formattedMonth}}</div>
+              <div>{{day.formatted}}</div>
+
+            </router-link>
 
           </td>
 
@@ -124,6 +128,7 @@ export default {
         weeks[week].push({
           day: day.clone(),
           formatted: day.format('D'),
+          formattedMonth: day.format('MMM'),
           today: day.isSame(date, 'day'),
           thisMonth: day.month() === date.month(),
         });
@@ -190,5 +195,9 @@ export default {
 
 .calendar-month__odd
   background-color #ddd
+
+.calendar-month
+  font-size 0.5em
+  text-transform uppercase
 
 </style>

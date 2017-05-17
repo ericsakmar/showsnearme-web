@@ -1,6 +1,6 @@
 <template>
   <div class="activity-indicator">
-    Finding shows{{ postfix }}
+    <p class="activity-indicator-message">Finding shows{{ postfix }}</p>
   </div>
 </template>
 
@@ -44,7 +44,18 @@ export default {
 @require "../styles/style"
 
 .activity-indicator
+  border-top 0.2em double base-color
+  border-bottom 0.2em double base-color
+  margin-left gutter-med
+  margin-right gutter-med
+  padding-top gutter-med
+  padding-bottom gutter-med
+
   @media (max-width: screen-small) 
     margin gutter-small
+
+.activity-indicator-message
+  width 8em
+  margin 0 auto
 
 </style>
