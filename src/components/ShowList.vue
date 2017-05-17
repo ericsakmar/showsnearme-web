@@ -143,8 +143,8 @@ export default {
   position sticky
   top 0
 
-.day
-  margin-top gutter
+.day:not(:last-child)
+  margin-bottom gutter-big
 
 .day-group
   margin-top gutter-small
