@@ -109,7 +109,6 @@ export default {
   text-align center
 
 .quick-links
-  margin-bottom gutter-med
   margin-left gutter-med
   margin-right gutter-med
   text-align center

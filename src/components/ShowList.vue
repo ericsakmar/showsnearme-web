@@ -131,7 +131,6 @@ export default {
 .header--day
   text-align center
   color base-color 
-  font-weight 700
   margin-left gutter-med
   margin-right gutter-med
   padding-top gutter-med
@@ -144,8 +143,8 @@ export default {
   position sticky
   top 0
 
-.day:not(:last-child)
-  margin-bottom gutter-big
+.day
+  margin-top gutter
 
 .day-group
   margin-top gutter-small
