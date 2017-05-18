@@ -99,6 +99,12 @@ export default {
       this.isLoading = true;
 
       window.fetch(`${process.env.API}/events?since=${since}&until=${until}`)
+        .then(res => {
+          if (!res.ok) {
+            throw error(res.statusText);
+          }
+          return res;
+        })
         .then(res => res.json())
         .then(shows => {
           const now = moment();
@@ -111,6 +117,9 @@ export default {
         })
         .then(shows => {
           this.shows = shows;
+          this.isLoading = false;
+        })
+        .catch(error => {
           this.isLoading = false;
         });
 
