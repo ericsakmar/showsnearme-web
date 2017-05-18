@@ -39,7 +39,7 @@
           <a href="#">Shows Near Me group on Facebook</a>.</p>
 
         <p class="app-info">Shows Near Me was created by 
-          <a href="#">Eric Sakmar</a> and is fueled by the <a href="#">community it serves</a>.</p>
+          <a href="#">Eric Sakmar</a>.</p>
 
       </div>
 
@@ -109,7 +109,6 @@ export default {
   text-align center
 
 .quick-links
-  margin-bottom gutter-med
   margin-left gutter-med
   margin-right gutter-med
   text-align center
@@ -121,6 +120,7 @@ export default {
   margin-left gutter-med
   margin-right gutter-med
   padding-bottom gutter-med
+  padding-top gutter-med
 
 .quick-link
   text-decoration none

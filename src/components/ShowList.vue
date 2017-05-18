@@ -131,7 +131,6 @@ export default {
 .header--day
   text-align center
   color base-color 
-  font-weight 700
   margin-left gutter-med
   margin-right gutter-med
   padding-top gutter-med
