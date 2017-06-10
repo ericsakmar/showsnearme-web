@@ -107,12 +107,12 @@ module.exports = {
       minify: true,
       staticFileGlobs: [
         'static/reset.css',
-        'static/fonts/*.otf',
+        'static/logo.svg',
       ],
       mergeStaticsConfig: true,
       runtimeCaching: [{
         urlPattern: /\/proxy\/events/,
-        handler: 'networkFirst',
+        handler: 'cacheFirst',
       }],
     }),
   ]

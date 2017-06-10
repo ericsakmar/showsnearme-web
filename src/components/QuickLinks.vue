@@ -11,7 +11,7 @@
 
       <span class="quick-link__divider">&#183;</span>
 
-      <a href="#" class="quick-link">Community</a>
+      <a href="https://www.facebook.com/groups/1234703889961588/" class="quick-link">Community</a>
 
       <span class="quick-link__divider">&#183;</span>
 
@@ -36,10 +36,12 @@
           for live shows in Pittsburgh.</p>
 
         <p class="app-info">Have a show? Want to see it here? Just post it to the
-          <a href="#">Shows Near Me group on Facebook</a>.</p>
+          <a href="https://www.facebook.com/groups/1234703889961588/">Shows Near Me group on Facebook</a>.
+        </p>
 
         <p class="app-info">Shows Near Me was created by 
-          <a href="#">Eric Sakmar</a>.</p>
+          <a href="mailto:eric@ericsakmar.com">Eric Sakmar</a>.
+        </p>
 
       </div>
 

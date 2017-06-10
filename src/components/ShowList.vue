@@ -109,7 +109,9 @@ export default {
     },
 
     getLinkTitle(show) {
-      let desc = show.name + ', ' + this.$options.filters.time(show.start_time);
+      let desc = show.name + ', ' 
+        + this.$options.filters.date(show.start_time) + ' at '
+        + this.$options.filters.time(show.start_time);
 
       if (show.place.length > 0) {
         desc += ' at ' + show.place[0].name;

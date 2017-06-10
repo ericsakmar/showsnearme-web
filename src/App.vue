@@ -135,25 +135,14 @@ export default {
 
 // these should go to the header component
 .big-header
-  margin-bottom gutter
   text-align center
+  margin-bottom gutter
 
   @media (max-width: screen-med)
     margin-top gutter
 
-.logo
-  font-size 15vw
-  color base-color
-  font-family 'GraphiqueProNext', monospace
-
-  @media (max-width: screen-med)
-    font-size 17vw
-
-  @media (max-width: screen-real-small)
-     font-size 18.5vw
-
-.logo-link
-  text-decoration none
-  color base-color !important
+  @media (max-width: screen-small)
+    margin-top 0
+    margin-bottom 0
 
 </style>
