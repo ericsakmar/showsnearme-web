@@ -20,6 +20,16 @@
     <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/logo-167.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/logo-180.png">
 
+
+    <meta property="og:title" content="Shows Near Me">
+    <meta property="og:description" content="A crowd-sourced community calendar for live shows in Pittsburgh.">
+    <meta property="og:image" content="https://pgh.showsnear.me/static/icons/social-2.png">
+    <meta property="og:url" content="https://pgh.showsnear.me">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="Shows Near Me">
+    <meta name="twitter:image:alt" content="Shows Near Me Logo">
+    <meta property="og:type" content="website">
+
     <style>
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -71,7 +81,6 @@ table {
 	border-spacing: 0;
 }
 
-
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
   box-sizing: border-box;
@@ -80,9 +89,14 @@ html {
   box-sizing: inherit;
 }
 
+.logo {
+  width: 100%;
+  max-width: 70em;
+  padding: 1rem;
+}
+
     </style>
 
-    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet">
   </head>
 
   <body>
@@ -92,9 +106,9 @@ html {
     <div class="page">
 
       <header class="big-header">
-        <h1 class="logo">
-          <a href="/" class="logo-link">Shows Near Me</a>
-        </h1>
+        <a href="/" class="logo-link">
+          <img class="logo" src="static/logo.svg" alt="Shows Near Me Logo" />
+        </a>
       </header>
 
       <div class="content">
