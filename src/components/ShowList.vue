@@ -11,7 +11,7 @@
           v-bind:title="getLinkTitle(show)"
           v-for="show in day.shows" 
           v-bind:style="getBackground(show)"
-          :href="'https://facebook.com/' + show.remoteId" 
+          :href="'https://facebook.com/' + show.id" 
           target="_blank"
           rel="noopener">
 
@@ -21,7 +21,7 @@
 
             <p class="show-summary__text">
               <span>{{ show.start_time | time }}</span>
-              <span v-if="show.place.length > 0">at {{ show.place[0].name }}</span>
+              <span v-if="show.place">at {{ show.place.name }}</span>
             </p>
 
           </div>
@@ -85,13 +85,13 @@ export default {
         .filter(visible => visible)
         .map((visible, i) => this.shows[i])
         .reduce((images, show) => {
-          images[show.remoteId] = show.cover && show.cover.source;
+          images[show.id] = show.cover && show.cover.source;
           return images;
         }, {});
     },
 
     getBackground(show) {
-      const image = this.backgroundImages[show.remoteId];
+      const image = this.backgroundImages[show.id];
       if (image) {
         return {
           backgroundImage: `url(${image})`,
@@ -113,8 +113,8 @@ export default {
         + this.$options.filters.date(show.start_time) + ' at '
         + this.$options.filters.time(show.start_time);
 
-      if (show.place.length > 0) {
-        desc += ' at ' + show.place[0].name;
+      if (show.place) {
+        desc += ' at ' + show.place.name;
       }
 
       desc += ' (opens in a new window)';
