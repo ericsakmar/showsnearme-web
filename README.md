@@ -1,10 +1,15 @@
-# web-2
+# Shows Near Me - Web
 
-> A Vue.js project
+Front-end for Shows Near Me.
+
+## No Longer in Production
+
+Due to changes in the Facebook API, specifically with the `/page/events`
+endpoint, this is application no longer works.
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -23,5 +28,3 @@ npm run e2e
 # run all tests
 npm test
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
