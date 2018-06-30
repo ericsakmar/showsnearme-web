@@ -117,15 +117,15 @@ export default {
       const weeks = [];
       const startWeek = start.week();
 
+      let weekIndex = -1;
       while (day.isSameOrBefore(end, 'day')) {
 
-        const week = day.week() - startWeek;
-
-        if (weeks.length === week) {
+        if (day.day() === 0) { // sunday
           weeks.push([]);
+          weekIndex++;
         }
 
-        weeks[week].push({
+        weeks[weekIndex].push({
           day: day.clone(),
           formatted: day.format('D'),
           formattedMonth: day.format('MMM'),
